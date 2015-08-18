@@ -1,0 +1,22 @@
+{
+  "name": "bower",
+  "version": "0.0.0",
+  "homepage": "https://github.com/klowewilliams/scheduler-app",
+  "authors": [
+    "Kimberly Lowe-Williams <kimberlylowewilliams@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-calendar": "~1.0.1"
+  }
+}

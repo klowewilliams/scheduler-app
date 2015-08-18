@@ -1,0 +1,39 @@
+<div class="container">
+ <section id="content">
+        <div class="bg_content_top">
+          <div class="general_bg">
+           <div class="inner-wrapper">
+             <div class="row-fluid">
+
+ <div class="inner-wrapper driver_space">
+<h1>Search Results Page</h1>
+</div>
+<div class="inner-wrapper driver_space">
+<h3> Projects </h3>
+<% unless @results.empty? %>
+
+<% @projects.each do |project| %>
+<div class="project-link">
+  <%= link_to project.project_name, "/projects/#{project.id}" %> 
+  <% end %>
+  <hr>
+</div>
+
+<div>
+<h3> Organizations </h3>
+  <% @organizations.each do |organization| %>
+  <div>
+    <%= link_to organization.company_name, "/organizations/#{organization.id}" %>
+    <% end %>
+  </div>
+</div>
+
+<% else %>
+  <p> No results </p>
+<% end %>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>

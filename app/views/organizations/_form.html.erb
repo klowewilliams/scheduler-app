@@ -1,0 +1,59 @@
+<div class="container">
+<%= form_for @organization do |f| %>
+<div>
+  <%= f.label :company_name, "Company Name" %>
+  <%= f.text_field :company_name %>
+</div>
+</br>
+<div>
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+</div>
+</br>
+<div>
+  <%= f.label :address2, "Address 2" %>
+  <%= f.text_field :address2 %>
+</div>
+</br>
+<div>
+  <%= f.label :city %>
+  <%= f.text_field :city %>
+</div>
+</br>
+<div>
+  <%= f.label :state %>
+  <%= f.text_field :state %>
+</div>
+</br>
+<div>
+  <%= f.label :postal_code, "Postal Code" %>
+  <%= f.text_field :postal_code %>
+</div>
+</br>
+<div>
+  <%= f.label :website %>
+  <%= f.text_field :website %>
+</div>
+</br>
+<div>
+  <%= f.label :mission, "Mission Statement" %>
+  <%= f.text_field :mission %>
+</div>
+</br>
+<div>
+  <%= f.label :company_size, "Company Size" %>
+  <%= f.text_field :company_size %>
+</div>
+</br>
+
+<div>
+  <%= f.file_field :image %>
+</div>
+
+</br>
+<div>
+  <%= f.submit "SAVE" %>
+</div>
+
+<% end %>
+</div>

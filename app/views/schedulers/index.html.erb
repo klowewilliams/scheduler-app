@@ -1,0 +1,95 @@
+<div ng-app="app">
+  <!-- {{ 1 + 1 }} -->
+</div>
+
+
+<!-- Start section content Top -->
+<section id="content_top">
+  <!-- STart sequence Slider  -->
+  <div id="sequence">
+    <a href="#" class="sequence-prev">Prev</a>
+    <a href="#" class="sequence-next">Next</a>
+    <ul class="sequence-canvas unstyled">
+      <li class="animate-in ">
+        <div class="start_anime">
+          <img src="https://s3.amazonaws.com/vms-capstone/uploads/project/image/volunteer_globe.jpg" class="bg_slider" alt="preview"/>
+          <div class="box_area_slider">
+            <div class="panel" >
+              <h2 class="title">Volunteer <small><strong>for a </strong> Cause</small></h2>
+              <div class="description">
+                <p>Look and sign up for a project that interests you. There are a variety of projects to discover, such as animals, children, homelessness or literacy. The opportunities to pay it forward are endless. Organizations go here when they are interested in finding the compassionate citizens of the world....and many need your help. </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="start_anime">
+          <img src="https://s3.amazonaws.com/vms-capstone/uploads/project/image/volunteerstogether.gif" class="bg_slider" alt="preview"/>
+          <div class="box_area_slider">
+            <div class="panel" >
+              <h2 class="title">Manage Your <small>the <strong>Volunteers </strong>in one place</small></h2>
+              <div class="description">
+                <ul>
+                  <li>Create Projects</li>
+                  <li>Organize Volunteers</li>
+                  <li>Promote Events </li>
+                  <li>Share with others</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div><!-- End sequence Slider  -->
+</section><!-- End section content page -->
+
+
+<!-- Start section logo message area -->
+<section id="logo_message_area">
+  <div class="inner-wrapper">
+    <!-- Start logo image -->
+    <h1 class="no_margin logo" ><strong>Volunteer</strong> <small>Management</small></h1><!-- End logo image -->
+    <!-- Start Message Your own -->
+    <div class="row-fluid">
+      <div class="span8">
+        <p class="no_margin"> Volunteers are not paid <strong>not because they are worthless</strong> but because they are priceless!</p>
+      </div>
+            <!-- <div class="span4 text_right">
+              <a class="btn btn-primary flat" href="reservation.html"><i class=" icon-calendar"></i> Booking Now</a>
+            </div> -->
+    </div>
+  </div>
+      <!-- End Message Your own -->
+      <div class="inner-wrapper driver_space">
+      
+      </div>
+</section> <!-- End section logo message area -->
+
+
+      <section id="content">
+        <div class="bg_content_top">
+           <div class="inner-wrapper">
+             <div class="row-fluid">
+             <div class="main-search">
+              <h1>SEARCH OPEN PROJECTS AND ORGANIZATIONS</h1>
+              <div id="custom_search">
+                <div ng-repeat="project in projects | filter: {project_name: project_nameFilter}">
+                </div>
+
+                <%= form_tag "/search", method: :post, role: "search" do%>
+                <div class="form-group" class="search_box">
+                  <%= text_field_tag :search, nil, class: "form-control search-box", placeholder: "Search for projects or organizations by keyword..." %>
+               </div>
+               
+               <%= submit_tag "Search", type: "submit", class: "btn btn-defaul" %>
+               <% end %>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+ </section>
+
+

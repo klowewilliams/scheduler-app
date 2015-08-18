@@ -1,0 +1,91 @@
+<div ng-app="app">
+  <!-- {{ 1 + 1 }} -->
+
+  <div ng-controller="projectsCtrl" ng-init="initialize(<%= params[:id] %>, <%= @exists %>)" >
+    <div class="container">
+      <section id="content">
+        <div class="bg_content_top">
+          <div class="general_bg">
+            <div class="inner-wrapper">
+              <div class="row-fluid">
+                
+                <div ng-if="message" class="alert-success alert">
+                  <h3> {{ message }} </h3>
+                </div> 
+                <div class="text-center">             
+                  <img class="projects-pic" ng-src="{{project.image.image.url}}"/>
+                  <h1> {{ project.name }} </h1>
+                </div>
+                <div class="divater">
+                  <div class="line"></div>
+                  <span><img src="https://s3.amazonaws.com/vms-capstone/deviter.png" alt="divider"></span>
+                </div>
+                <p> Location: {{ project.location }} </p>
+                <p> Description: {{ project.description }} </p>
+                <p> Project Begins: {{ project.start_date | date:"MM/dd/yyyy 'at' h:mma Z" }} </p>
+                <p> Project Ends: {{ project.end_date | date:"MM/dd/yyyy 'at' h:mma Z" }} </p>
+                <p> Available volunteer spots: {{ project.slots }} </p>
+                <p> Category: <%= @project.category.category_name %> </p>
+
+                <!-- Edit button should only show for the organizer for a specific organization !-->
+                <% if @user && @user.role_id == 2 %>
+                <div class="edit-projects">
+                  <% if @user.organization_id == @project.organization_id && @user.role_id == 2 %>
+                  <button type="button" class="btn btn-success"> <%= link_to "Edit this project", "/projects/#{@project.id}/edit" %>
+                  </button>
+                </div>
+                
+                <h4>{{ alertMessage }}</h4>
+
+                <!-- Calendar section begins !-->
+
+                <div class="text-center">
+                  <div class="divater"><div class="line">
+                    <h2>MANAGE YOUR VOLUNTEERS HERE</h2>
+                  </div>
+                </div>
+
+                <div class="calendar">
+<!-- 
+                    <input placeholder="Name" list="names" ng-model="volunteerName">
+                    <datalist id="names">
+                      <option ng-repeat="user in users"> {{ user.name }}</option>
+                    </datalist> -->
+                    <select ng-model="volunteer" ng-options="user.name for user in users | unique: 'name'"></select>
+                    <div class="date-time-dropdown">
+                      <input type="datetime-local" ng-model="startDate">
+
+                      <button class="btn btn-primary flat" ng-click="addEvent(volunteer)">Add to Calendar</button>
+                    </div>
+
+                    <div id="full-calendar" ui-calendar={{uiConfig.calendar}} ng-model="eventSources">
+                    </div>
+                    <% end %>
+                  </div>
+                  <% end %>
+
+                  <!-- Sign me up button should only show for volunteers !-->
+                  <% if @user && @user.role_id == 1 %>
+
+                  <div ng-hide="signedUp">
+                    <button type="button" class="btn btn-success" ng-click="addUserToProject(<%= @user.id%>, <%=@project.id%>)"> 
+                      Sign me up!
+                    </button>
+                  </div>
+
+                  <div ng-hide="removeSignUp">
+                    <button type="button" class="btn btn-success" ng-click="removeUserFromProject(<%= @user.id%>, <%=@project.id%>)"> Remove me from this project
+                    </button>
+                  </div>
+                  <% end%> 
+
+                   <% unless current_user %>
+                  <button type="button" class="btn btn-alert"> <%= link_to "Join now to sign up for this project", "/users/sign_up" %>
+                  </button>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+

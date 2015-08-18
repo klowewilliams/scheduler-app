@@ -1,0 +1,111 @@
+<div class="container">
+<section id="content">
+        <div class="bg_content_top">
+          <div class="general_bg">
+           <div class="inner-wrapper">
+             <div class="row-fluid">
+<div class="text-center">             
+<div class="welcome">
+  <h2>Welcome <%= current_user.first_name %></h2>
+  </div>
+</div>
+ <div class="divater">
+  <div class="line"></div>
+  <span><img src="https://s3.amazonaws.com/vms-capstone/deviter.png" alt="divider"></span>
+  </div>
+<div class="user">
+  <% if @user.role_id == 1 %>
+  <div>
+    <h1>Your Projects</h1>
+     <% unless @user.projects.empty? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="col-md-4">Project Name </th>
+          <th class="col-md-4">Location </th>
+          <th class="col-md-4">Status </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @user.projects.uniq.each do |project| %>
+        <tr>
+          <td>
+            <%= link_to project.project_name, "/projects/#{project.id}" %></td>
+            <td> <%= project.location %> </td>
+            <td> <%= project.status %> </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%else %>
+    <h3> You have not volunteered for any projects. </h3>
+    <% end %>
+
+
+      <h2> Find more opportunities </h2>
+
+      <%= form_tag "/search", method: :post, role: "search" do%>
+      <div class="form-group">
+       <%= text_field_tag :search %>
+     </div>
+     <%= submit_tag "Search", type: "submit" %>
+     <% end %>
+   </div>
+   <% end %>
+
+
+<!-- BEGIN ORGANIZER VIEW !-->
+<section>
+   <% if @user.role_id == 2 %>
+   <div class="user projects" >
+    <h4> Create a new project: 
+      <button type="button" class="btn btn-success"><%= link_to "New Project", "/projects/new" %></button>
+    </h4>
+  </div>
+  <% end %>
+</div>
+
+<div class="Organizer">
+  <% if @user.role_id == 2 %>
+  <h2> <%= @organization.company_name %> Open Projects </h1>
+
+  <!-- SHOW ONLY THIS ORGANIZATION'S PROJECTS !-->
+  <% unless @organization.projects.empty? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col-md-4">Project Name </th>
+        <th class="col-md-4">Remaining slots</th>
+        <th class="col-md-4">Current Volunteers</th>
+      </tr>
+    </thead>
+
+    
+    <tbody>
+      <% @organization.projects.each do |project| %>
+      <tr>
+        <td> <%= link_to project.project_name, "/projects/#{project.id}" %> </td>
+        <td> <%= project.slots %> </td>
+        <% project.users.uniq.each do |user| %>
+        <td><%= user.full_name %>
+          <% end %></td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+    <%else %>
+    <h3> You have not created any projects. </h3>
+    <% end %>
+
+    
+    <% end %>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>

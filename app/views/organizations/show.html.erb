@@ -1,0 +1,41 @@
+<div class="container">
+  <section id="content">
+    <div class="bg_content_top">
+      <div class="general_bg">
+       <div class="inner-wrapper">
+         <div class="row-fluid">
+          <div class="org logo">
+            <%= image_tag @organization.logo %>
+          </div>
+          <h1><%= @organization.company_name %></h1>
+          <p><%= @organization.mission %></p>
+
+          <div class="text-center">      
+
+            <h2>Organization's Projects</h2>
+          </div>
+          <div class="divater">
+            <div class="line"></div>
+            <span><img src="https://s3.amazonaws.com/vms-capstone/deviter.png" alt="divider"></span>
+          </div>
+
+          <% unless @projects.empty? %>
+          <% @projects.each do |project| %>
+          <div>
+            <%=  link_to project.project_name, "/projects/#{project.id}"  %>
+          </div>
+          <% end %>
+
+          <% else %>
+          <h4> There are no open projects for <%= @organization.company_name %> at this time. </h4>
+          <h4> Check back later! </h4>
+          <% end %>
+
+          <% if @user && @user.role_id == 2 %>
+          <button type="button" class="btn btn-success"> <%= link_to "Edit this Organization", "/organizations/#{@organization.id}/edit" %></button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,75 @@
+<div class="container">
+<section id="content">
+    <div class="bg_content_top">
+      <div class="general_bg">
+       <div class="inner-wrapper">
+         <div class="row-fluid">
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field" id="js-role">
+    <%= f.label :role_id, "Volunteer" %>
+    <%= f.radio_button :role_id, value = 1 %><br />
+    <%= f.label :role_id, "Organizer" %>
+    <%= f.radio_button :role_id, value= 2, id: "js-org-btn" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :organization_id, "Organization" %>
+    <%= f.select :organization_id, Organization.all.map{ |organization| [organization.company_name, organization.id] }, {prompt: "Organization..."}, {id: "org_select"} %> <br />
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#js-role").on("click", function (e){
+    if($("#js-org-btn").is(":checked")){
+      $("#org_select").prop("disabled", false)
+    }else{
+      $("#org_select").prop("disabled", true)
+    }
+  })
+})
+</script>

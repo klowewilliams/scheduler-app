@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SchedulerApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="keywords" content="bootstrap, Templatte bootstrap, Template bootstrap hotel, bootstrap hotel , wrapbootstrap, yobio"/> -->
+    <!-- <meta name="description" content="HTML Responsive, Best HTML template for your hotel website"/>
+    <meta name="author" content="yobio studio"/> -->
+    <!-- <link rel="shortcut icon" href="lobster/images/faicon.png"/> -->
+    <!-- styles Bootsrap -->
+    <!-- <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <!-- <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" /> -->
+    <!-- end styles Bootsrap -->
+
+    <!-- FONTAWESOME STYLE -->
+    <!-- <link rel="stylesheet" href="lobster/css/font/FortAwesome/css/font-awesome.css"/> -->
+      <!--[if IE 7]>
+      <link rel="stylesheet" href="lobster/css/font/FortAwesome/css/font-awesome-ie7.min.css">
+      <![endif]-->
+      <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+      <!-- Style Lightbox -->
+      <!-- <link rel="stylesheet" href="lobster/css/light_box/magnific-popup.css"/> -->
+      <!-- End Style Lightbox -->
+
+      <!-- Style Full Calendar-->
+      <!-- <link href="lobster/css/fullcalendar/fullcalendar.css" rel="stylesheet" /> -->
+      <!-- Style Datatatbles-->
+      <!-- <link href="lobster/css/datatables/css/jquery.dataTables.css" rel="stylesheet" /> -->
+
+      <!-- styles Lobster Theme -->
+      <!-- <link href="lobster/css/style.css" rel="stylesheet" /> -->
+      <!-- <link href="lobster/css/color_theme.css" rel="stylesheet" /> -->
+      <!-- place for your custom styles -->
+      <!-- <link href="lobster/css/mystyle.css" rel="stylesheet" /> -->
+      <!-- End Lobster Theme -->
+    </head>
+
+    <body class="theme_default">
+      <div id="wrapper">
+        <section id="top_header">
+          <div class="inner-wrapper text_center">
+
+            <!--Start Main Navigation-->
+            <div class="togle_menu_mobile"><a class="btn btn-primary flat" data-toggle="collapse" data-target=".main_navbar"> <i class="icon-th-list icon-2x"></i> </a> <strong>&nbsp;&nbsp;Volunteer </strong> Management System </div>
+            <nav class="main_navbar collapse">
+              <ul class="unstyled">
+                <li class="active"><a href="/schedulers">Home</a></li>
+            <!-- <li><a href="accomodation.html">Accomodation</a></li>
+            <li><a href="restuarant.html">Restuarant</a></li>
+            <li><a href="spa.html">Spa</a></li>
+            <li><a href="offering.html">Offering</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="reservation.html">Reservations</a></li> -->
+            <li><a href="/about">About Us</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Member <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Log in", "/users/sign_in" if not current_user %></li>
+                <li><%= link_to "Sign Up", "/users/sign_up" if not current_user %></li>
+                <% if user_signed_in? %>
+                <li><%= link_to "Sign Out", "/users/sign_out", method: :delete %></li>
+                <li><%= link_to "Edit My Account", "/users/edit" %></li>
+                <% end %>
+              </ul>
+            </li>
+            <li>
+              <div class="col-lg-6">
+               <%= form_tag "/search", method: :post, role: "search" do%>
+               <div class="form-group2" class="search_box">
+                 <%= text_field_tag :search %>
+               </div>
+               <%= submit_tag "Search", type: "submit" %>
+               <% end %>
+             </div><!-- /input-group -->
+             <!-- /.col-lg-6 -->
+           </li>
+           <!-- /.row -->
+           <!--  <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="index_simple.html">Home Simple</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="blog_detail.html">Blog Detail</a></li>
+                <li><a href="galeries.html">Galeries</a></li>
+                <li><a href="blank.html">Blank page</a></li>
+                <li><a href="documentation/index.html">Documentation</a></li> -->
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <!--ENd Main Navigation-->
+      </div>
+    </section>      
+    <!-- Start section content Top -->
+
+
+
+  <!-- <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p> -->
+
+  <div ng-app="app"> 
+    <%= yield %>  
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<div class="container">
+  <%= form_for @project, :html => {:multipart => true, class: "form-horizontal"}  do |f| %>
+
+
+  <div class="control-group">
+    <%= f.label :project_name, "Project Name", class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :project_name %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :location, "City/State of Project", class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :location %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :description, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :description %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :start_date, "Project Start Date", class: "control-label" %>
+    <div class="controls span8">
+      <%= f.datetime_select :start_date, :ampm => true, :minute_step => 30 %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :end_date, "Project End Date", class: "control-label" %>
+    <div class="controls span8">
+      <%= f.datetime_select :end_date, :ampm => true, :minute_step => 01 %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :slots, "Total Number of slots to fill", class: "control-label" %>
+    <div class="controls">
+      <%= f.number_field :slots %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :status, class: "control-label" %>
+    <div class="controls">
+      <%= f.select :status, [['Active','active'],['Inactive','inactive'],['Closed','closed']] %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :category_id, "Category", class: "control-label" %>
+    <div class="controls">
+      <%= f.select :category_id, Category.all.map{ |category| [category.category_name, category.id] } %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :organization_id, "Organization" %>
+    <div class="controls">
+      <%= f.select :organization_id, Organization.all.map{ |organization| [organization.company_name, organization.id] } %> <br />
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= f.file_field :image %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit "SAVE" %>
+    </div>
+  </div>
+
+  <% end %>
+</div>
